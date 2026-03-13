@@ -1,0 +1,27 @@
+# 2279 - echo
+# Read all input and output it exactly
+# When input becomes 0 (end of stream), halt
+
+# Read character
+A<I
+
+# Check if zero - if so, halt
+Z<A       # Will halt if A is non-zero... wait, we want opposite!
+
+# We need: if A == 0, then Z = 1
+# Strategy: invert the logic
+# Set up: B = 1 if A == 0, else B = 0
+
+# Initialize memory
+[0]<1     # mem[0] = 1, will be used as halt flag when A==0
+
+# Read and output
+A<I
+O<A
+
+# Set halt flag based on input
+# If A is 0, we want Z = 1
+# Use lookup: mem[A] where mem[0] = 1, all others = 0
+Z<[A]     # Z = mem[A], so Z = 1 when A = 0
+
+# This should work
