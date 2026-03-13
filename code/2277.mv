@@ -1,0 +1,33 @@
+# 2277 - if else
+# Read two characters and output '1' if same, '0' if different
+
+# Read first character into memory
+[0]<I
+
+# Read second character into memory
+[1]<I
+
+# Load into registers
+A<[0]
+B<[1]
+
+# Compare using memory as a hash table
+# Mark position A in array starting at 100
+C<100
+D<[C+A]     # D = mem[100+A], initially 0
+[C+A]<1     # Mark that we've seen value A
+
+# Now check if B was marked
+E<[C+B]     # E = 1 if A == B, else 0
+
+# Map E to output character
+# E=0 -> '0' (48), E=1 -> '1' (49)
+[200]<48    # mem[200] = '0'
+[201]<49    # mem[201] = '1'
+
+F<200
+G<[F+E]     # G = mem[200+E]
+O<G
+
+# Halt
+Z<1
